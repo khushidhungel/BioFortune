@@ -229,16 +229,19 @@ def precheck():
             st.session_state.entered = True
 
     # If started, show countdown and progress bar
-    if st.session_state.get("eye_started", False) and not st.session_state.get("entered", False):
-        elapsed = int(time.time() - st.session_state.get("eye_start_time", time.time()))
-        remaining = max(0, 30 - elapsed)
-        st.progress((elapsed)/30)
-        st.markdown(f"**Time left:** {remaining}s")
-        if remaining <= 0:
-            st.success("Great! You're ready. Entering the app...")
-            st.session_state.entered = True
-            # small delay for UX
-            time.sleep(0.8)
+   if st.session_state.get("eye_started", False) and not st.session_state.get("entered", False):
+    elapsed = int(time.time() - st.session_state.eye_start_time)
+    remaining = max(0, 30 - elapsed)
+    st.progress(elapsed / 30)
+    st.markdown(f"**Time left:** {remaining}s")
+
+    if remaining <= 0:
+        st.success("Great! You're ready. Entering the app...")
+        st.session_state.entered = True
+        st.session_state.eye_started = False
+    else:
+        time.sleep(1)          # pause for 1 second
+        st.experimental_rerun()  # refresh the app to update the timer every second
     st.markdown("---")
     st.markdown("**Mood history (recent):**")
     if st.session_state.mood_history:
@@ -326,4 +329,5 @@ st.markdown("</div>", unsafe_allow_html=True)
 # Footer
 st.markdown("---")
 st.caption("Made with 💚 by Khushi — BioFortune Prototype")
+
 

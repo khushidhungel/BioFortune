@@ -9,7 +9,6 @@ import os
 from PIL import Image
 import requests
 from io import BytesIO
-from streamlit_autorefresh import st_autorefresh
 
 # -------------------------
 # CONFIG & SAFETY
@@ -230,7 +229,6 @@ def precheck():
             st.session_state.entered = True 
             
     if st.session_state.get("eye_started", False) and not st.session_state.get("entered", False):
-        count = st_autorefresh(interval=1000, limit=31, key="eye_timer")
         elapsed = int(time.time() - st.session_state.eye_start_time)
         remaining = max(0, 30 - elapsed)
         progress_val = min(max(elapsed / 30, 0), 1)  # Clamp between 0 and 1
@@ -331,6 +329,7 @@ st.markdown("</div>", unsafe_allow_html=True)
 # Footer
 st.markdown("---")
 st.caption("Made with 💚 by Khushi — BioFortune Prototype")
+
 
 
 

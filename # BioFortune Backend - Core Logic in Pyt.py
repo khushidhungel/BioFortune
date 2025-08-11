@@ -168,7 +168,7 @@ def get_remedy(user_symptom):
             }
     return {
         "status": "not_found",
-        "message": "Sorry, we could not find a remedy for your symptom. Try describing it differently."
+        "message": "Sorry, we could not find a remedy for your symptom so searching..... Try describing it differently."
     }
 def get_ai_suggestion(symptom):
     prompt = f"""
@@ -236,3 +236,4 @@ if st.button("Find Remedy"):
 
 st.markdown("---")
 st.caption("Made with 💚 by Khushi - BioFortune Prototype")
+

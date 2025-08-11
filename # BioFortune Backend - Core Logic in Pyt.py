@@ -226,14 +226,15 @@ def precheck():
             st.session_state.eye_started = True
             st.session_state.eye_start_time = time.time()
         if st.button("Skip and Enter"):
-            st.session_state.entered = True
-# Countdown timer and progress bar (properly indented inside the function)
+            st.session_state.entered = True 
+            
     if st.session_state.get("eye_started", False) and not st.session_state.get("entered", False):
         elapsed = int(time.time() - st.session_state.eye_start_time)
         remaining = max(0, 30 - elapsed)
-        st.progress(elapsed / 30)
+        progress_val = min(max(elapsed / 30, 0), 1)  # Clamp between 0 and 1
+        st.progress(progress_val)
         st.markdown(f"**Time left:** {remaining}s")
-
+        
         if remaining <= 0:
             st.success("Great! You're ready. Entering the app...")
             st.session_state.entered = True
@@ -328,6 +329,7 @@ st.markdown("</div>", unsafe_allow_html=True)
 # Footer
 st.markdown("---")
 st.caption("Made with 💚 by Khushi — BioFortune Prototype")
+
 
 
 

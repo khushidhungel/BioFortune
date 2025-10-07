@@ -271,7 +271,7 @@ def main_app():
                     elif result["status"] == "ok":
                         show_result_card(result["remedy"])
                     else:
-                        st.warning("Not found in local database — fetching an AI suggestion...")
+                        st.warning(" — fetching an suggestion...")
                         with st.spinner("Consulting the herbal AI..."):
                             ai_text = ask_genai(user_input)
                         st.markdown("### 🤖 AI Suggested Remedy")
@@ -329,6 +329,7 @@ st.markdown("</div>", unsafe_allow_html=True)
 # Footer
 st.markdown("---")
 st.caption("Made with 💚 by Khushi — BioFortune Prototype")
+
 
 
 
